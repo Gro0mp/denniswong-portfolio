@@ -1,7 +1,5 @@
 import './index.css';
 import './App.css';
-import './components/pages/DSASelector.jsx';
-import {NotFound} from "./components/pages/NotFound.jsx";
 import {LoadingScreen} from "./components/LoadingScreen.jsx";
 import {useState} from "react";
 import {Navbar} from "./components/Navbar.jsx";
