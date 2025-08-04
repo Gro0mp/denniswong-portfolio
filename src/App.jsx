@@ -9,6 +9,7 @@ import {MobileMenu} from "./components/MobileMenu.jsx";
 import {Home} from "./components/sections/Home.jsx";
 import {About} from "./components/sections/About.jsx";
 import {Projects} from "./components/sections/Projects.jsx";
+import {Contacts} from "./components/sections/Contacts.jsx";
 
 import {BrowserRouter, Routes} from "react-router-dom";
 
@@ -26,6 +27,7 @@ function App() {
                 <Home />
                 <About />
                 <Projects />
+                <Contacts />
             </div>
 
             <BrowserRouter>
