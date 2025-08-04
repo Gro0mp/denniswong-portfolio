@@ -29,10 +29,6 @@ function App() {
                 <Projects />
                 <Contacts />
             </div>
-
-            <BrowserRouter>
-                <Routes path={`/hello`} element={<NotFound />}/>
-            </BrowserRouter>
         </>
     )
 }
