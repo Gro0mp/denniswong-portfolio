@@ -16,7 +16,7 @@ export const Contacts = () => {
         emailjs.sendForm(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, e.target, import.meta.env.VITE_PUBLIC_KEY).then((result) => {
             alert("Message Sent Successfully");
             setFormData({name: "", email: "", message: ""});
-        }).catch((err) => {
+        }).catch(() => {
             alert("Message Error");
         });
     }
