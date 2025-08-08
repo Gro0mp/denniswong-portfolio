@@ -55,7 +55,7 @@ function Sphere({ color = "hotpink", floatIntensity = 15, position = [0, 5, -8],
 export default function BackgroundRoom() {
     const [bad, set] = useState(false);
     const { debug, enabled, samples, ...config } = useControls({
-        debug: true,
+        debug: false,
         enabled: false,
         size: { value: 35, min: 0, max: 100, step: 0.1 },
         focus: { value: 0.5, min: 0, max: 2, step: 0.1 },
@@ -65,8 +65,8 @@ export default function BackgroundRoom() {
     return (
         <>
             <div className={`scene-container`}>
-                <Canvas shadows camera={{ position: [5, 2, 10], fov: 50 }} gl={{ alpha: true }}>
-                    {debug && <Perf position="top-left" />}
+                <Canvas shadows camera={{ position: [5, 2, 7], fov: 50 }} gl={{ alpha: true }}>
+                    {debug && <Perf position="bottom-left" />}
                     <PerformanceMonitor onDecline={() => set(true)} />
                     {enabled && <SoftShadows {...config} samples={bad ? Math.min(6, samples) : samples} />}
                     <color attach="background" args={["transparent"]} />

@@ -70,7 +70,7 @@ export const About = () => {
                     {/* The grid to hold the education and work experience */}
                     <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mt-8`}>
                         {/* The Education Box component */}
-                        <div className={`p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all`}>
+                        <div className={`p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all bg-gray-500/20 bg-opacity-90 backdrop-filter backdrop-blur-xs`}>
                             <h3 className={`text-xl font-bold mb-4`}>
                                 Education
                             </h3>
@@ -95,7 +95,7 @@ export const About = () => {
                         </div>
 
                         {/* The Professional Experience Box component */}
-                        <div className={`p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all`}>
+                        <div className={`p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all bg-gray-500/20 bg-opacity-90 backdrop-filter backdrop-blur-xs`}>
                             <h3 className={`text-xl font-bold mb-4`}>
                                 Professional Experience
                             </h3>
