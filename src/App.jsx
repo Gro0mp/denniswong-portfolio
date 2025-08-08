@@ -12,6 +12,8 @@ import DSASelector from "./pages/DSASelector.jsx";
 import ArrayVisualization from "./pages/ArrayVisualization.jsx";
 import LinkedListVisualizer from "./pages/LinkedListVisualizer.jsx";
 
+import BackgroundRoom from "./pages/BackgroundRoom.jsx";
+
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
 import {useRef, useState} from "react";
 import {Canvas, useFrame} from "@react-three/fiber";
@@ -21,16 +23,19 @@ import {Canvas, useFrame} from "@react-three/fiber";
 function Portfolio() {
     return (
         <>
-            <Home />
-            <About />
-            <Projects />
-            <Contacts />
+            <div className="fixed top-0 left-0 w-full h-full">
+                <BackgroundRoom/>
+            </div>
+            <Home/>
+            <About/>
+            <Projects/>
+            <Contacts/>
         </>
     );
 }
 
 // Layout component that conditionally shows navbar
-function Layout({ children }) {
+function Layout({children}) {
     const location = useLocation();
     const isDSAPage = location.pathname.startsWith('/denniswong-portfolio/dsa/');
     const [menuOpen, setMenuOpen] = useState(false);
@@ -61,6 +66,7 @@ function App() {
                             {/*<Route path="/denniswong-portfolio/dsa/:type/:id" element={<div className="min-h-screen pt-20 px-6 text-center"><h1 className="text-4xl">DSA Content Coming Soon!</h1></div>} />*/}
                             <Route path="/denniswong-portfolio/dsa/data-structure/array" element={<ArrayVisualization />} />
                             <Route path="/denniswong-portfolio/dsa/data-structure/linked-list" element={<LinkedListVisualizer />} />
+                            <Route path="/denniswong-portfolio/room" element={<BackgroundRoom />} />
                             {/* Add more routes here */}
                         </Routes>
                     </Layout>

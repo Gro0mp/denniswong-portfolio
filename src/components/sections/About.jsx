@@ -13,7 +13,7 @@ export const About = () => {
                         About Me
                     </h2>
 
-                    <div className={`rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all`}>
+                    <div className={`rounded-xl p-8 border-white/10 bg-gray-500/20 bg-opacity-90 backdrop-filter backdrop-blur-xs border hover:-translate-y-1 transition-all`}>
                         <p className={`text-gray-300 mb-6`}>
                             I'm Dennis Wong, a Computer Science student at UMass Boston with a 3.9 GPA, specializing in
                             software development and
