@@ -204,7 +204,7 @@ const ArrayVisualization = () => {
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-4">
                         <Link
-                            to="/denniswong-portfolio/dsa"
+                            to="/dsa"
                             className="text-blue-400 hover:text-blue-300 transition-colors flex items-center"
                         >
                             ← Back to DSA

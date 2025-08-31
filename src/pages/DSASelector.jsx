@@ -124,7 +124,7 @@ const DSASelector = () => {
     ];
 
     const handleItemClick = (type, id) => {
-        navigate(`/denniswong-portfolio/dsa/${type}/${id}`);
+        navigate(`/dsa/${type}/${id}`);
     };
 
     const getDifficultyColor = (difficulty) => {
@@ -172,11 +172,11 @@ const DSASelector = () => {
     );
 
     return (
-        <div className="min-h-screen px-6 bg-black">
+        <div className="min-h-screen px-6 py-10 bg-black">
             <div className="max-w-7xl mx-auto py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-5xl font-bold bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent mb-4">
+                    <h1 className="text-5xl font-bold bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent mb-4 h-[8rem] sm:h-[4rem]">
                         Data Structures & Algorithms
                     </h1>
                     <p className="text-xl text-gray-400 max-w-2xl mx-auto">

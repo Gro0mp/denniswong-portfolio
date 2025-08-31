@@ -66,8 +66,8 @@ export default function BackgroundRoom() {
         <>
             <div className={`scene-container`}>
                 <Canvas shadows camera={{ position: [5, 2, 7], fov: 50 }} gl={{ alpha: true }}>
-                    {debug && <Perf position="bottom-left" />}
-                    <PerformanceMonitor onDecline={() => set(true)} />
+                    {/*{debug && <Perf position="bottom-left" />}*/}
+                    {/*<PerformanceMonitor onDecline={() => set(true)} />*/}
                     {enabled && <SoftShadows {...config} samples={bad ? Math.min(6, samples) : samples} />}
                     <color attach="background" args={["transparent"]} />
                     <fog attach="fog" args={["#d0d0d0", 8, 35]} />

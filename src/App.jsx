@@ -1,5 +1,4 @@
 import './index.css';
-import './App.css';
 import {LoadingScreen} from "./components/LoadingScreen.jsx";
 import {Navbar} from "./components/Navbar.jsx";
 import {MobileMenu} from "./components/MobileMenu.jsx";
@@ -7,10 +6,14 @@ import {Home} from "./components/sections/Home.jsx";
 import {About} from "./components/sections/About.jsx";
 import {Projects} from "./components/sections/Projects.jsx";
 import {Contacts} from "./components/sections/Contacts.jsx";
+import {WorkExperience} from "./components/sections/WorkExperience.jsx";
 
 import DSASelector from "./pages/DSASelector.jsx";
 import ArrayVisualization from "./pages/ArrayVisualization.jsx";
+import {LinkedListSelector} from "./pages/LinkedListSelector.jsx";
 import LinkedListVisualizer from "./pages/LinkedListVisualizer.jsx";
+
+import {Chatbot} from "./pages/Chatbot.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
@@ -28,6 +31,7 @@ function Portfolio() {
             </div>
             <Home/>
             <About/>
+            <WorkExperience />
             <Projects/>
             <Contacts/>
         </>
@@ -37,13 +41,13 @@ function Portfolio() {
 // Layout component that conditionally shows navbar
 function Layout({children}) {
     const location = useLocation();
-    const isDSAPage = location.pathname.startsWith('/denniswong-portfolio/dsa/');
+    const isPortfolioPage = location.pathname.startsWith('/denniswong-portfolio');
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <>
-            {!isDSAPage && <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
-            {!isDSAPage && <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
+            {isPortfolioPage && <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
+            {isPortfolioPage && <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
             {children}
         </>
     );
@@ -62,12 +66,15 @@ function App() {
                     <Layout>
                         <Routes>
                             <Route path="/denniswong-portfolio" element={<Portfolio />} />
-                            <Route path="/denniswong-portfolio/dsa" element={<DSASelector />} />
-                            {/*<Route path="/denniswong-portfolio/dsa/:type/:id" element={<div className="min-h-screen pt-20 px-6 text-center"><h1 className="text-4xl">DSA Content Coming Soon!</h1></div>} />*/}
-                            <Route path="/denniswong-portfolio/dsa/data-structure/array" element={<ArrayVisualization />} />
-                            <Route path="/denniswong-portfolio/dsa/data-structure/linked-list" element={<LinkedListVisualizer />} />
-                            <Route path="/denniswong-portfolio/room" element={<BackgroundRoom />} />
-                            {/* Add more routes here */}
+                            <Route path="/dsa" element={<DSASelector />} />
+                            {/* Arrays Route */}
+                            <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
+                            {/* Linked List Routes */}
+                            <Route path="/dsa/data-structure/linked-list" element={<LinkedListSelector />} />
+                            <Route path="/dsa/data-structure/linked-list/singly-linked-list" element={<LinkedListVisualizer />} />
+
+                            {/* Chatbot Route */}
+                            <Route path="/chat" element={<Chatbot />} />
                         </Routes>
                     </Layout>
                 </BrowserRouter>
