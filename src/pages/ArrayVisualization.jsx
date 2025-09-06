@@ -165,20 +165,20 @@ const ArrayVisualization = () => {
         setOperation(op);
         switch (op) {
             case 'sort':
-                const sorted = [...arrayData].sort((a, b) => a - b);
+                { const sorted = [...arrayData].sort((a, b) => a - b);
                 animateSort(sorted);
-                break;
+                break; }
             case 'reverse':
                 setArrayData([...arrayData].reverse());
                 break;
             case 'shuffle':
-                const shuffled = [...arrayData];
+                { const shuffled = [...arrayData];
                 for (let i = shuffled.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
                 }
                 setArrayData(shuffled);
-                break;
+                break; }
             case 'reset':
                 setArrayData([5, 3, 8, 1, 9, 2, 7, 4, 6]);
                 setSelectedIndex(-1);

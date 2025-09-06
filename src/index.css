@@ -8,7 +8,8 @@ html, body, #root {
   font-family: "Space Grotesk", sans-serif;
   background: #000;
   color: #f3f4f6;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: auto
 }
 
 @layer utilities {
