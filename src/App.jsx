@@ -17,7 +17,7 @@ import {Chatbot} from "./pages/Chatbot.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
-import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
+import {BrowserRouter, HashRouter, Routes, Route, useLocation} from "react-router-dom";
 import {useRef, useState} from "react";
 import {Canvas, useFrame} from "@react-three/fiber";
 
