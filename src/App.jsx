@@ -41,13 +41,16 @@ function Portfolio() {
 // Layout component that conditionally shows navbar
 function Layout({children}) {
     const location = useLocation();
-    const isPortfolioPage = location.pathname.startsWith('/denniswong-portfolio');
+    // Show navbar on portfolio page (root) and exclude specific pages
+    const showNavbar = location.pathname === '/' ||
+        (!location.pathname.includes('/dsa') &&
+            !location.pathname.includes('/chat'));
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <>
-            {isPortfolioPage && <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
-            {isPortfolioPage && <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
+            {showNavbar && <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
+            {showNavbar && <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>}
             {children}
         </>
     );
@@ -65,7 +68,8 @@ function App() {
                 <BrowserRouter>
                     <Layout>
                         <Routes>
-                            <Route path="/denniswong-portfolio" element={<Portfolio />} />
+                            {/* Root route serves the portfolio */}
+                            <Route path="/" element={<Portfolio />} />
                             <Route path="/dsa" element={<DSASelector />} />
                             {/* Arrays Route */}
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
