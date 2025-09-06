@@ -70,6 +70,7 @@ function App() {
                         <Routes>
                             {/* Root route serves the portfolio */}
                             <Route path="/" element={<Portfolio />} />
+                            <Route path="/denniswong-portfolio" element={<Portfolio />} />
                             <Route path="/dsa" element={<DSASelector />} />
                             {/* Arrays Route */}
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
