@@ -14,6 +14,7 @@ import {LinkedListSelector} from "./pages/LinkedListSelector.jsx";
 import LinkedListVisualizer from "./pages/LinkedListVisualizer.jsx";
 
 import {Chatbot} from "./pages/Chatbot.jsx";
+import {WebGPUTest} from "./pages/WebGPUTest.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
@@ -42,9 +43,7 @@ function Portfolio() {
 function Layout({children}) {
     const location = useLocation();
     // Show navbar on portfolio page (root) and exclude specific pages
-    const showNavbar = location.pathname === '/' ||
-        (!location.pathname.includes('/dsa') &&
-            !location.pathname.includes('/chat'));
+    const showNavbar = location.pathname === '/' || (!location.pathname.includes('/dsa') && !location.pathname.includes('/test'));
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -72,14 +71,15 @@ function App() {
                             <Route path="/" element={<Portfolio />} />
                             <Route path="/denniswong-portfolio" element={<Portfolio />} />
                             <Route path="/dsa" element={<DSASelector />} />
+
                             {/* Arrays Route */}
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
                             {/* Linked List Routes */}
                             <Route path="/dsa/data-structure/linked-list" element={<LinkedListSelector />} />
                             <Route path="/dsa/data-structure/linked-list/singly-linked-list" element={<LinkedListVisualizer />} />
 
-                            {/* Chatbot Route */}
-                            <Route path="/chat" element={<Chatbot />} />
+                            {/* WebGPU Test Route */}
+                            <Route path="/test" element={<WebGPUTest />} />
                         </Routes>
                     </Layout>
                 </BrowserRouter>
