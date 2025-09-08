@@ -1,13 +1,21 @@
-import {Canvas} from "@react-three/fiber";
+import {Canvas, useFrame} from "@react-three/fiber";
 import {OrbitControls} from "@react-three/drei";
 import {useRef} from "react";
 
 const RotatingCube = ({position, size, color}) => {
 
     const meshRef = useRef(null);
+
+    useFrame(() => {
+        if (meshRef.current) {
+            meshRef.current.rotation.y += 0.01;
+            meshRef.current.rotation.x += 0.01;
+        }
+    });
     return (
-      <mesh ref={meshRef}>
-        
+      <mesh ref={meshRef} position={position}>
+          <cylinderGeometry args={size} />
+          <meshLambertMaterial color={color} emissive={color} />
       </mesh>
     );
 }
