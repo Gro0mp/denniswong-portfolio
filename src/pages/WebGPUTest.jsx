@@ -1,5 +1,6 @@
 import {Canvas, useFrame} from "@react-three/fiber";
-import {OrbitControls} from "@react-three/drei";
+import {OrbitControls, Sparkles} from "@react-three/drei";
+import {FirstPersonControls} from "@react-three/drei";
 import {useRef} from "react";
 
 const RotatingCube = ({position, size, color}) => {
@@ -14,11 +15,14 @@ const RotatingCube = ({position, size, color}) => {
     });
     return (
       <mesh ref={meshRef} position={position}>
-          <cylinderGeometry args={size} />
+          <boxGeometry args={size} />
           <meshLambertMaterial color={color} emissive={color} />
+
+          <Sparkles count={100} scale={1} size={6} speed={0.002} noise={0.2} color={`pink`}/>
       </mesh>
     );
 }
+
 
 export const WebGPUTest = () => {
 
@@ -29,8 +33,11 @@ export const WebGPUTest = () => {
 
           <color attach={`background`} args={[`#F0F0F0`]}></color>
 
-          <RotatingCube></RotatingCube>
+          <RotatingCube position={[0, 0, 0]} size={[1, 1, 1]} color={`#468585`}/>
+          <RotatingCube position={[1, 1, 0]} size={[1, 1, 1]} color={`#468585`}/>
+          <RotatingCube position={[2, 2, 2]} size={[1, 1, 1]} color={`#468585`}/>
 
       </Canvas>
     );
 }
+

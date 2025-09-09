@@ -10,11 +10,10 @@ import {WorkExperience} from "./components/sections/WorkExperience.jsx";
 
 import DSASelector from "./pages/DSASelector.jsx";
 import ArrayVisualization from "./pages/ArrayVisualization.jsx";
-import {LinkedListSelector} from "./pages/LinkedListSelector.jsx";
-import LinkedListVisualizer from "./pages/LinkedListVisualizer.jsx";
 
 import {Chatbot} from "./pages/Chatbot.jsx";
 import {WebGPUTest} from "./pages/WebGPUTest.jsx";
+import {GraphicsCourse} from "./pages/GraphicsCourse.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
@@ -74,9 +73,6 @@ function App() {
 
                             {/* Arrays Route */}
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
-                            {/* Linked List Routes */}
-                            <Route path="/dsa/data-structure/linked-list" element={<LinkedListSelector />} />
-                            <Route path="/dsa/data-structure/linked-list/singly-linked-list" element={<LinkedListVisualizer />} />
 
                             {/* WebGPU Test Route */}
                             <Route path="/test" element={<WebGPUTest />} />
@@ -89,3 +85,5 @@ function App() {
 }
 
 export default App
+
+
