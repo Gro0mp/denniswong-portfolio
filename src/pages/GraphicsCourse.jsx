@@ -8,7 +8,7 @@ const Cube = ({position, size, color}) => {
     const ref = useRef(null); 
 
     return (
-        <mesh ref={meshRef} position={position}>
+        <mesh ref={ref} position={position}>
             <boxGeometry args={size} />
             <meshLambertMaterial color={color} emissive={color} />
 
