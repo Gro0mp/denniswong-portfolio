@@ -75,7 +75,7 @@ function App() {
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
 
                             {/* WebGPU Test Route */}
-                            <Route path="/test" element={<WebGPUTest />} />
+                            <Route path="/test" element={<GraphicsCourse />} />
                         </Routes>
                     </Layout>
                 </BrowserRouter>

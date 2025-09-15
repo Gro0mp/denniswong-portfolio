@@ -17,7 +17,17 @@ const Cube = ({position, size, color}) => {
     );
 }
 
+
+
 export const GraphicsCourse = () => {
+
+    const cubes = [];
+    for (let i = 0; i < 10; i++) {
+        cubes.push(
+            <Cube position={[0, i, 0]} size={[1, 1, 1]} color={`#468585`}/>
+        )
+    }
+
     return (
         <Canvas style={{height:'100vh',width:'100vw', display:'flex',justifyContent:'center', alignItems: 'center'}}>
             <OrbitControls enableZoom={true} enablePan></OrbitControls>
@@ -26,7 +36,10 @@ export const GraphicsCourse = () => {
             <color attach={`background`} args={[`#F0F0F0`]}></color>
 
             <Cube position={[0, 0, 0]} size={[1, 1, 1]} color={`#468585`}/>
-            <Cube position={[0, 0, 0]} size={[1, 1, 1]} color={`#468585`}/>
+            <Cube position={[0, 2, 0]} size={[1, 1, 1]} color={`#468585`}/>
+
+            {cubes}
+
 
 
         </Canvas>
