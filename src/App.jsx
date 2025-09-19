@@ -14,6 +14,7 @@ import ArrayVisualization from "./pages/ArrayVisualization.jsx";
 import {Chatbot} from "./pages/Chatbot.jsx";
 import {WebGPUTest} from "./pages/WebGPUTest.jsx";
 import {GraphicsCourse} from "./pages/GraphicsCourse.jsx";
+import {Innocence} from "./pages/Innocence.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
@@ -77,7 +78,7 @@ function App() {
                             <Route path="/chatbot" element={<Chatbot />} />
 
                             {/* WebGPU Test Route */}
-                            <Route path="/test" element={<GraphicsCourse />} />
+                            <Route path="/test" element={<Innocence />} />
                         </Routes>
                     </Layout>
                 </BrowserRouter>
