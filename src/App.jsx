@@ -42,7 +42,7 @@ function Portfolio() {
 function Layout({children}) {
     const location = useLocation();
     // Show navbar on portfolio page (root) and exclude specific pages
-    const showNavbar = location.pathname === '/' || (!location.pathname.includes('/dsa') && !location.pathname.includes('/test'));
+    const showNavbar = location.pathname === '/' || location.pathname === '/denniswong-portfolio';
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -73,6 +73,8 @@ function App() {
 
                             {/* Arrays Route */}
                             <Route path="/dsa/data-structure/array" element={<ArrayVisualization />} />
+
+                            <Route path="/chatbot" element={<Chatbot />} />
 
                             {/* WebGPU Test Route */}
                             <Route path="/test" element={<GraphicsCourse />} />
