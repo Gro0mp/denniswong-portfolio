@@ -78,7 +78,7 @@ function App() {
                             <Route path="/chatbot" element={<Chatbot />} />
 
                             {/* WebGPU Test Route */}
-                            <Route path="/test" element={<Innocence />} />
+                            <Route path="/test" element={<WebGPUTest />} />
                         </Routes>
                     </Layout>
                 </BrowserRouter>
