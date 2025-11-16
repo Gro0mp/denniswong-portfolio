@@ -18,7 +18,7 @@ const ArrayVisualization = () => {
     useEffect(() => {
         if (!mountRef.current) return;
 
-        // Scene setup
+        // scene setup
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
         sceneRef.current = scene;

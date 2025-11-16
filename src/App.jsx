@@ -2,19 +2,23 @@ import './index.css';
 import {LoadingScreen} from "./components/LoadingScreen.jsx";
 import {Navbar} from "./components/Navbar.jsx";
 import {MobileMenu} from "./components/MobileMenu.jsx";
-import {Home} from "./components/sections/Home.jsx";
-import {About} from "./components/sections/About.jsx";
-import {Projects} from "./components/sections/Projects.jsx";
-import {Contacts} from "./components/sections/Contacts.jsx";
-import {WorkExperience} from "./components/sections/WorkExperience.jsx";
+import {Home} from "./components/HomeSection/Home.jsx";
+import {About} from "./components/HomeSection/About.jsx";
+import {Projects} from "./components/HomeSection/Projects.jsx";
+import {Contacts} from "./components/HomeSection/Contacts.jsx";
+import {WorkExperience} from "./components/HomeSection/WorkExperience.jsx";
 
 import DSASelector from "./pages/DSASelector.jsx";
 import ArrayVisualization from "./pages/ArrayVisualization.jsx";
 
-import {Chatbot} from "./pages/Chatbot.jsx";
-import {WebGPUTest} from "./pages/WebGPUTest.jsx";
+import Chatbot from "./pages/Chatbot.jsx";
 import {GraphicsCourse} from "./pages/GraphicsCourse.jsx";
-import {Innocence} from "./pages/Innocence.jsx";
+import {Tutorial} from "./pages/Tutorial.jsx";
+import VideoControls from "./components/ChatbotSection/videoControls/VideoControls.jsx";
+
+
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/Signup.jsx";
 
 import BackgroundRoom from "./pages/BackgroundRoom.jsx";
 
@@ -78,7 +82,16 @@ function App() {
                             <Route path="/chatbot" element={<Chatbot />} />
 
                             {/* WebGPU Test Route */}
-                            <Route path="/test" element={<WebGPUTest />} />
+                            <Route path="/tutorial" element={<Tutorial />} />
+
+                            {/* Login Route */}
+                            <Route path="/login" element={<Login/>}/>
+                            {/* Signup Route */}
+                            <Route path="/signup" element={<SignUp/>}/>
+
+                            {/* Testing Routes */}
+                            <Route path={"/video-test"} element={<VideoControls/>}/>
+
                         </Routes>
                     </Layout>
                 </BrowserRouter>

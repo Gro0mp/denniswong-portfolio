@@ -1,90 +1,140 @@
-import React, { useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import {useEffect, useState} from 'react';
+import {Header} from '../components/ChatbotSection/chatControls/Header.jsx';
+import {MessageList} from '../components/ChatbotSection/chatControls/MessageList.jsx';
+import {MessageBox} from '../components/ChatbotSection/chatControls/MessageBox.jsx';
+import VideoControls from "../components/ChatbotSection/videoControls/VideoControls.jsx";
+import axios from "axios";
+import {useLocation, useNavigate} from "react-router-dom";
 
-// Component for the 3D model
-function LapwingModel() {
-    const { scene } = useGLTF('/models/lapwing.glb', true);
+
+const api = axios.create({
+    baseURL: 'http://localhost:8080/',
+    timeout: 15000,
+    headers: {
+        'Content-Type': 'application/json',
+    }
+});
+
+export default function Chatbot() {
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    const [input, setInput] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    // Load the chat history for the user
+    const loadChatHistory = async (userId) => {
+        try {
+            const response = await api.get(`/api/v1/chat/user/${userId}`);
+            const chatHistory = response.data;
+
+            const formattedChatHistory = chatHistory.toReversed().flatMap(chat => [
+                {
+                    id: `${chat.id}-user`,
+                    role: 'user',
+                    content: chat.message,
+                },
+                {
+                    id: `${chat.id}-assistant`,
+                    role: 'assistant',
+                    content: chat.response,
+                }
+            ]);
+
+            setMessages(formattedChatHistory)
+        } catch (error) {
+            console.error('Error loading chat history:', error);
+        }
+    }
+
+    const handleSend = async () => {
+        if (!input.trim() || !user || loading) return;
+
+        const userMessage = input.trim();
+        const tempUserMessage = {
+            id: `temp-user-${Date.now()}`,
+            role: 'user',
+            content: userMessage,
+        };
+
+        // Add all the user messages
+        setMessages((prevMessages) => [...prevMessages, tempUserMessage]);
+        setInput('');
+        setLoading(true);
+
+        try {
+            // Add the user message to the backend
+            const response = await api.post('http://localhost:8080/api/v1/chat/receive-message', {
+                userId: user.id,
+                message: userMessage,
+            });
+
+            // Add the AI response message
+            const aiMessage = {
+                id: `${response.data.id}-assistant`,
+                role: 'assistant',
+                content: response.data.response,
+            };
+
+            // Update the messages state with the AI message
+            setMessages(prevMessages => [...prevMessages, aiMessage]);
+        } catch (error) {
+            console.error('Error sending message:', error);
+
+            // Add error message
+            setMessages(prev => [...prev, {
+                id: `error-${Date.now()}`,
+                role: 'assistant',
+                content: 'Sorry, I encountered an error. Please try again.'
+            }]);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // Get the user and their messages from navigation state or local storage
+    useEffect(() => {
+        if (location.state?.user) {
+            const user = location.state.user;
+            setUser(user);
+            loadChatHistory(location.state.user.id).then();
+            console.log(user.username);
+        } else {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+                loadChatHistory(parsedUser.id).then();
+            } else {
+                navigate('/login');
+            }
+        }
+    }, [location, navigate]);
+
+    if (!user) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-gray-500">Loading...</p>
+            </div>
+        );
+    }
 
     return (
-        <primitive
-            object={scene}
-            position={[0, 0.5, 0]}
-            scale={[1, 1, 1]}
-        />
-    );
-}
-
-// Fallback cube component
-function FallbackCube() {
-    return (
-        <mesh position={[0, 0.5, 0]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshLambertMaterial color={0x00ff88} />
-        </mesh>
-    );
-}
-
-// Scene components
-function Scene() {
-    return (
-        <>
-            {/* Lighting */}
-            <ambientLight intensity={0.6} color={0x404040} />
-            <directionalLight
-                intensity={0.8}
-                position={[10, 10, 5]}
-                color={0xffffff}
+        <div className="flex flex-col h-screen bg-gray-50">
+            <VideoControls/>
+            <Header user={user}/>
+            <MessageList messages={messages} loading={loading}/>
+            <MessageBox
+                input={input}
+                setInput={setInput}
+                onSend={handleSend}
+                loading={loading}
             />
-
-            {/* Ground plane */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-                <planeGeometry args={[20, 20]} />
-                <meshLambertMaterial color={0xcccccc} side={2} />
-            </mesh>
-
-            {/* Try to load model, fallback to cube */}
-            <React.Suspense fallback={<FallbackCube />}>
-                <LapwingModel />
-            </React.Suspense>
-
-            {/* Orbit controls */}
-            <OrbitControls
-                enableDamping={true}
-                dampingFactor={0.05}
-                screenSpacePanning={false}
-                minDistance={1}
-                maxDistance={100}
-                maxPolarAngle={Math.PI / 2}
-            />
-        </>
-    );
-}
-
-export const Chatbot = () => {
-    return (
-        <div style={{
-            width: '100vw',
-            height: '100vh',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 1
-        }}>
-            <Canvas
-                camera={{
-                    position: [0, 5, 10],
-                    fov: 75,
-                    near: 0.1,
-                    far: 1000
-                }}
-                gl={{
-                    antialias: true,
-                    alpha: false
-                }}
-            >
-                <Scene />
-            </Canvas>
         </div>
     );
-};
+}
+
+
+
